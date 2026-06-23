@@ -1,21 +1,25 @@
 /**
- * Proposal content — the "recipe".
- * Per the SoTech module recipe: 🔒 standard language stays put; 🔬 research-filled
- * parts are swapped per client. Theme (colours/fonts) varies per client; the
- * structure + feel is the Style C standard.
+ * Proposal content — the "recipe" template.
  *
- * This file is what the build (and eventually /proposal-mode) fills from 05-proposal.md.
- * The content below is the peptide example, used as the template's default.
+ * CONVENTION (this is a TEMPLATE, not a finished proposal):
+ *   • {{double-brace}} tokens  = 🔬 RESEARCH-FILLED — swapped per client by the build
+ *                                 (from 05-proposal.md). They mark every variable.
+ *   • plain real sentences     = 🔒 STANDARD LANGUAGE — the same on every proposal;
+ *                                 keep close to verbatim (intros, framings, the educate
+ *                                 copy, definitions, the standard milestones/options/checklist).
+ *
+ * The /proposal-mode build replaces the {{tokens}} with the client's specifics and the
+ * `theme` with the client's colours. Standard copy stays put.
  */
 
 export const meta = {
-  title: "A Proposal — SoTech",
-  description: "A custom website & e-commerce proposal, prepared by SoTech.",
-  preparedFor: "Prepared for Jesus & John",
+  title: "{{Client Name}} — Proposal · SoTech",
+  description: "A custom website proposal, prepared by SoTech.",
+  preparedFor: "Prepared for {{Client Name}}",
   cta: "View the proposal",
 };
 
-/* 🔬 per-client theme — structure/feel stays Style C */
+/* 🔬 per-client theme — overridden by the build; this is the SoTech default palette */
 export const theme = {
   bg: "#0d0d0f",
   peri: "#8E9BE8",
@@ -26,122 +30,128 @@ export const theme = {
 };
 
 export const overview = {
+  // 🔒 second sentence is standard; 🔬 first sentence describes the build
   intro:
-    "A custom website & e-commerce store for a new peptide brand to launch online and sell across its product categories. This section sets out the project scope, its primary goal, the key differentiator, and what each side is responsible for.",
+    "{{One-paragraph description of what we're building for {{Client Name}} and who it serves.}} This section sets out the project scope, its primary goal, the key differentiator, and what each side is responsible for.",
   lead: {
     tag: "The project",
-    title: "A lifestyle peptide store, built to sell.",
-    body: "A custom, mobile-first e-commerce site for a young, fit audience. Premium & marketing-led, not a clinical biomed catalog.",
+    title: "{{One-line project headline}}",
+    body: "{{1–2 line description of the build and the audience it's for}}",
   },
-  goal: { label: "Primary goal", body: "One link that sells: a place to send your warm, local audience today, and the foundation to scale into full e-commerce + organic traffic." },
-  diff: { label: "Key differentiator", body: "Lifestyle, not biomed. Influencer-worthy design with events & sponsorship energy: the look does the marketing." },
-  clientResp: ["Brand name, logo & design direction", "Product photos, pricing & descriptions", "Feedback within each revision round"],
-  sotechResp: ["Design, build & launch", "E-commerce + the dosage calculator", "Hosting, care & support"],
+  goal: { label: "Primary goal", body: "{{The primary goal this site drives}}" },
+  diff: { label: "Key differentiator", body: "{{What sets this apart from the competition}}" },
+  clientResp: ["{{Client responsibility 1}}", "{{Client responsibility 2}}", "{{Client responsibility 3}}"],
+  sotechResp: ["{{SoTech responsibility 1}}", "{{SoTech responsibility 2}}", "{{SoTech responsibility 3}}"],
   stats: [
-    { n: "7", label: "Pages" },
-    { n: "20", label: "Products" },
-    { n: "3", label: "Shop categories" },
+    { n: "{{#}}", label: "{{stat label}}" },
+    { n: "{{#}}", label: "{{stat label}}" },
+    { n: "{{#}}", label: "{{stat label}}" },
   ],
 };
 
 export const competitors = {
+  // 🔒 framing standard; 🔬 the competitors come from /competitive-brief deep-capture
   intro:
-    "The benchmark. Three established players, measured side by side: how each store is built, what they do well, and where a focused, lifestyle-led brand wins. This is the bar to clear.",
+    "The benchmark. A few established players, measured side by side: how each is built, what they do well, and where {{Client Name}} wins. This is the bar to clear.",
   items: [
-    { name: "Klouds Klub", url: "kloudsklub.myshopify.com", pages: "~5", pageTypes: "Home · catalog · product · contact", notable: "Consultation / Rx flow · dreamy pastel hero · one CTA", lookFeel: "Soft pastels, lavender & peach", whereYouWin: "Borrow the dreamy look, then beat it on the story, About, trust signals, and real structure it's missing." },
-    { name: "Ro", url: "ro.co", pages: "25+", pageTypes: "Home · category hubs · product / condition · quiz · about · blog", notable: "Quiz → consult funnel · subscriptions · heavy clinical trust", lookFeel: "Clean white & navy, clinical", whereYouWin: "Borrow their best-in-class trust & conversion paths, but lose the cold, older-skewing tone." },
-    { name: "Hims", url: "hims.com", pages: "25+", pageTypes: "Home · category hubs · product · quiz · about · blog", notable: "Condition quizzes · subscriptions · lifestyle photography", lookFeel: "Warm cream & amber, youthful", whereYouWin: "The closest to your vibe. Win by matching that energy at a focused, boutique scale." },
+    { name: "{{Competitor 1}}", url: "{{competitor-1-url}}", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
+    { name: "{{Competitor 2}}", url: "{{competitor-2-url}}", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
+    { name: "{{Competitor 3}}", url: "{{competitor-3-url}}", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
   ],
 };
 
 export const designDirection = {
+  // 🔒 all standard language — design direction framing stays the same every time
   intro:
     "The visual direction for the brand, colour palette, typography, and the overall art direction that carries across every page. It's the creative foundation we lock alongside your references before the build begins.",
   note: {
     tag: "What we need from you",
-    body: "You don't have a brand name, logo or colours chosen yet, and that's completely fine. Everything below is a starting direction to react to, not your final scheme. Locking your name, logo, palette and fonts is the first thing we set together, and the main thing we need from you to begin.",
+    body: "Lock your brand name, logo, palette and fonts with us, that's the first thing we set together. Until then, everything below is a starting direction to react to, not your final scheme.",
   },
+  // 🔬 the build sets these to the client's palette; defaults to SoTech's
   palette: [
-    { role: "Primary", name: "Periwinkle", hex: "#8E9BE8" },
-    { role: "Secondary", name: "Lavender", hex: "#B9A0F0" },
-    { role: "Secondary", name: "Violet", hex: "#9B7BD4" },
-    { role: "Accent", name: "Pink", hex: "#DA8BC4" },
-    { role: "Complement", name: "Sky", hex: "#5B9BD5" },
+    { role: "Primary", name: "{{Colour}}", hex: "#8E9BE8" },
+    { role: "Secondary", name: "{{Colour}}", hex: "#B9A0F0" },
+    { role: "Secondary", name: "{{Colour}}", hex: "#9B7BD4" },
+    { role: "Accent", name: "{{Colour}}", hex: "#DA8BC4" },
+    { role: "Complement", name: "{{Colour}}", hex: "#5B9BD5" },
   ],
-  type: { title: "Confident, modern sans-serif", body: "Big uppercase headlines + clean, readable body. Bold but friendly, reads premium on mobile.", weights: ["Regular", "Bold", "Black"], on: "Bold" },
-  moods: ["Dreamy", "Premium", "Confident", "Lifestyle", "Influencer-ready"],
+  type: { title: "{{Type direction}}", body: "{{One line on the typographic feel}}", weights: ["Regular", "Bold", "Black"], on: "Bold" },
+  moods: ["{{Mood}}", "{{Mood}}", "{{Mood}}", "{{Mood}}"],
   logoNote: "Drop in yours when ready, we can refine a draft. The layout is built to hold your mark; the palette locks to your brand on the mock.",
 };
 
 export const siteMap = {
   intro: "Every page your site will have, how they connect, and what lives on each one.",
-  nav: ["Home", "Shop", "About", "FAQ", "Contact"],
+  nav: ["Home", "{{Nav}}", "{{Nav}}", "{{Nav}}", "{{Nav}}"],
   pages: [
-    { name: "Home", slug: "/", sections: "Hero · 3 category cards · “find your fit” quiz · featured products · reviews · trust row." },
-    { name: "Shop", slug: "/shop", sections: "Category hubs (weight loss · longevity · recovery) · product grid · quick add." },
-    { name: "Product ★", slug: "/[item]", sections: "Gallery · dosage & frequency · the dosage calculator · subscribe & save · add to cart." },
-    { name: "About", slug: "/about", sections: "Founders’ story · brand ethos · credibility & quality." },
-    { name: "FAQ", slug: "/faq", sections: "Dosage basics · how-to-use · safety · shipping · payments." },
-    { name: "Contact", slug: "/contact", sections: "Inquiry form · support path." },
+    { name: "Home", slug: "/", sections: "{{the sections on the home page}}" },
+    { name: "{{Page}}", slug: "/{{slug}}", sections: "{{the sections on this page}}" },
+    { name: "{{Page}}", slug: "/{{slug}}", sections: "{{the sections on this page}}" },
+    { name: "{{Page}}", slug: "/{{slug}}", sections: "{{the sections on this page}}" },
+    { name: "{{Page}}", slug: "/{{slug}}", sections: "{{the sections on this page}}" },
+    { name: "Contact", slug: "/contact", sections: "{{inquiry form · support path}}" },
   ],
-  borrowed: "Borrowed from the audit: a “Find your fit” quiz & subscribe & save (Ro & Hims), category hubs (both), and a real FAQ + reviews (the trust Klouds lacks).",
-  phase2: "Member portal · full SEO/blog · deeper analytics · scale.",
+  borrowed: "What to borrow from the audit: {{the competitor-proven features worth building in}}.",
+  phase2: "{{Phase 2 scope — what we add later as you grow}}",
 };
 
 export const functionalities = {
   intro: "The features and tools your site runs on, what it can actually do for you.",
   features: [
-    { tag: "Custom Feature ★", color: "pink", title: "Dosage Calculator", body: "Vials per cycle from body weight + cycle length, the interactive hook that sets you apart." },
-    { tag: "Guided", color: "lav", title: "“Find your fit” quiz", body: "A few questions → the right peptides recommended. A proven path the top brands use." },
-    { tag: "Recurring", color: "peri", title: "Subscribe & save", body: "Customers can subscribe to reorder automatically, steady repeat revenue." },
-    { tag: "E-Commerce", color: "violet", title: "A full store on Shopify", body: "Catalog by category, cart, secure checkout & order tracking, powered by Shopify." },
+    { tag: "Custom Feature ★", color: "pink", title: "{{Signature custom feature}}", body: "{{what it does and why it sets you apart}}" },
+    { tag: "{{Tag}}", color: "lav", title: "{{Feature}}", body: "{{what it does}}" },
+    { tag: "{{Tag}}", color: "peri", title: "{{Feature}}", body: "{{what it does}}" },
+    { tag: "{{Tag}}", color: "violet", title: "{{Feature}}", body: "{{what it does}}" },
   ],
   integrations: [
-    { icon: "$", title: "Shopify checkout", body: "Secure checkout & payments, built into Shopify." },
-    { icon: "@", title: "Email capture", body: "Newsletter + abandoned-cart flows." },
-    { icon: "↗", title: "Analytics + Pixel", body: "Google Analytics + Meta Pixel for ads & tracking." },
+    { icon: "$", title: "{{Integration}}", body: "{{what it connects}}" },
+    { icon: "@", title: "{{Integration}}", body: "{{what it connects}}" },
+    { icon: "↗", title: "{{Integration}}", body: "{{what it connects}}" },
   ],
 };
 
 export const samplePreview = {
   intro: "A rough first look at how the site could feel, illustrative, not the final design.",
   pages: [
-    { id: "home", label: "Home", hero: "Lifestyle hero + headline + CTA", blocks: ["3 category cards", "Find-your-fit quiz", "Featured products", "Reviews", "Trust row"] },
-    { id: "shop", label: "Shop", hero: "Shop the collection", blocks: ["Category tabs", "Product grid", "Quick add to cart"] },
-    { id: "product", label: "Product", hero: "Product gallery", blocks: ["Dosage & frequency", "Dosage calculator ★", "Subscribe & save", "Add to cart"] },
-    { id: "about", label: "About", hero: "Our story", blocks: ["Founders’ story", "Brand ethos", "Credibility & quality"] },
-    { id: "faq", label: "FAQ", hero: "Questions, answered", blocks: ["Dosage basics", "How to use", "Safety", "Shipping"] },
-    { id: "contact", label: "Contact", hero: "Get in touch", blocks: ["Inquiry form", "Support path"] },
+    { id: "home", label: "Home", hero: "{{Home hero concept}}", blocks: ["{{section}}", "{{section}}", "{{section}}", "{{section}}"] },
+    { id: "page2", label: "{{Page}}", hero: "{{hero concept}}", blocks: ["{{section}}", "{{section}}", "{{section}}"] },
+    { id: "page3", label: "{{Page}}", hero: "{{hero concept}}", blocks: ["{{section}}", "{{section}}", "{{section}}"] },
+    { id: "contact", label: "Contact", hero: "{{Get in touch}}", blocks: ["{{inquiry form}}", "{{support path}}"] },
   ],
 };
 
 export const domainHosting = {
   intro: "The essentials that keep your site live, findable, and looked-after over time.",
+  // 🔒 the four essentials definitions are standard
   essentials: [
     { k: "Domain", v: "Your unique web address (yourbrand.com), how people find you online." },
     { k: "Hosting", v: "The server your site's files live on, served fast, secure & always on." },
     { k: "Email", v: "Professional email on your domain (you@yourbrand.com), instant credibility." },
     { k: "SEO", v: "Helps you rank higher on Google, driving organic traffic to your site." },
   ],
+  // 🔬 platform + numbers come from the matched pricing/model ingredient
   cards: [
-    { label: "Domain", color: "peri", body: "Your web address, you choose & own it. We help pick + connect it. ~$24–75 / 2 yrs to the registrar." },
-    { label: "E-commerce platform · Shopify", color: "lav", body: "Shopify Basic ($39/mo) runs your store, checkout, product manager & sales tracking, your admin for everything commerce." },
-    { label: "Hosting, care & support · SoTech", color: "violet", body: "$15/mo, we host & connect the site and keep it maintained, fast, secure & supported. (Revisions are a separate add-on, below.)" },
-    { label: "Custom Shopify build", color: "pink", body: "A custom-designed Shopify store + your dosage calculator, not a stock template." },
+    { label: "Domain", color: "peri", body: "Your web address, you choose & own it. We help pick + connect it. {{~$X / 2 yrs to the registrar}}." },
+    { label: "{{Platform}}", color: "lav", body: "{{The platform that runs the site/store ({{$X/mo}}), and what it covers}}." },
+    { label: "Hosting, care & support · SoTech", color: "violet", body: "{{$X/mo}}, we host & connect the site and keep it maintained, fast, secure & supported. (Revisions are a separate add-on, below.)" },
+    { label: "{{Build type}}", color: "pink", body: "{{What we're building — a custom design, not a stock template}}." },
   ],
   dashboard: { label: "Client Dashboard", body: "Your private portal to submit & track change requests and view analytics. Every revision goes through it, so nothing gets lost." },
-  revisions: { label: "Revisions", body: "Unlimited revisions $75/mo via your dashboard (handled one at a time), or $50 per revision as you go. A revision = an edit to existing pages or content; adding a new page or feature is a separate custom quote." },
+  // 🔒 the revision definition is standard; 🔬 the prices are the per-client model
+  revisions: { label: "Revisions", body: "Unlimited revisions {{$X/mo}} via your dashboard (handled one at a time), or {{$X per revision}} as you go. A revision = an edit to existing pages or content; adding a new page or feature is a separate custom quote." },
 };
 
 export const leadFlow = {
   intro: "How visitors turn into customers, and where every lead or order ends up.",
   steps: [
-    { n: "1", t: "Land", d: "From your link or social." },
-    { n: "2", t: "Browse", d: "By category → a product." },
-    { n: "3", t: "Decide", d: "Dosage info + calculator." },
-    { n: "4", t: "Checkout", d: "Cart → secure Shopify." },
-    { n: "5", t: "Confirm", d: "Order + on your list." },
+    { n: "1", t: "{{Step}}", d: "{{detail}}" },
+    { n: "2", t: "{{Step}}", d: "{{detail}}" },
+    { n: "3", t: "{{Step}}", d: "{{detail}}" },
+    { n: "4", t: "{{Step}}", d: "{{detail}}" },
+    { n: "5", t: "{{Step}}", d: "{{detail}}" },
   ],
+  // 🔒 the educate copy + 3 destination options are standard
   educate: "Every site needs a home for the people it brings in. When someone buys or fills a form, that lead has to land somewhere you'll actually use, pick how yours flows:",
   options: [
     { n: "1", tag: "Basic · Free", title: "Export to a spreadsheet", body: "Every order and lead lands in an Excel / Google Sheet you can download anytime. Free and manual, you follow up yourself." },
@@ -152,6 +162,7 @@ export const leadFlow = {
 };
 
 export const timeline = {
+  // 🔒 the standard SoTech milestone spine — same on every website proposal
   intro: "The week-by-week plan, from green-light to launch.",
   milestones: [
     { n: "01", t: "Brand & Design Direction", d: "Colours, type & the overall look, locked first." },
@@ -165,32 +176,32 @@ export const timeline = {
 
 export const pricing = {
   intro: "A clear, itemized breakdown of the investment — one-time build plus monthly.",
+  // 🔬 line items + amounts from 04-pricing.md (the approved client-facing numbers)
   oneTime: [
-    { label: "UI/UX Design", desc: "Custom visual design, mobile-first. Not a template.", amount: "$1,000" },
-    { label: "Website Development", desc: "All pages, responsive, front + back end.", amount: "$1,000" },
-    { label: "Shopify Store Setup", desc: "Catalog, categories, cart & secure checkout.", amount: "$400" },
-    { label: "Dosage Calculator", desc: "Custom interactive feature.", amount: "$200" },
-    { label: "Forms, Integrations & SEO", desc: "Forms wired + on-page SEO basics.", amount: "$200" },
-    { label: "Client Dashboard", desc: "Revisions + analytics portal.", amount: "$200" },
+    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{$0}}" },
+    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{$0}}" },
+    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{$0}}" },
+    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{$0}}" },
   ],
-  // Reference-based pricing (modelled on past builds, e.g. 180AgPros). `special` is
-  // an OPTIONAL per-client rate (off by default) — not a standard part of the template.
-  total: { standard: "$3,000", note: "+ applicable tax" } as { standard: string; special?: string; specialLabel?: string; note: string },
+  // `special` is an OPTIONAL per-client rate (off by default — no standard discount)
+  total: { standard: "{{$0,000}}", note: "+ applicable tax" } as { standard: string; special?: string; specialLabel?: string; note: string },
   monthly: [
-    { label: "Shopify Basic — e-commerce platform", desc: "Store, checkout, product CMS & sales tracking. Paid to Shopify.", amount: "$39/mo" },
-    { label: "SoTech — hosting, care & support", desc: "Managed hosting, maintenance & support. Paid to SoTech.", amount: "$15/mo" },
-    { label: "Unlimited revisions (optional)", desc: "Edits to existing pages via your dashboard, one at a time. Or $50 per revision.", amount: "$75/mo" },
+    { label: "{{Platform}} — platform", desc: "{{what it covers, who it's paid to}}", amount: "{{$0/mo}}" },
+    { label: "SoTech — hosting, care & support", desc: "Managed hosting, maintenance & support. Paid to SoTech.", amount: "{{$0/mo}}" },
+    { label: "Unlimited revisions (optional)", desc: "Edits to existing pages via your dashboard, one at a time. Or {{$0 per revision}}.", amount: "{{$0/mo}}" },
   ],
+  // 🔒 revision definition is standard
   note: "Revisions = edits to existing pages; a new page or feature is quoted separately.",
 };
 
 export const nextSteps = {
+  // 🔒 the standard "what we need to start" checklist
   intro: "The handful of things we need from you to get started.",
   items: [
     { t: "Brand name + domain", d: "Pick a name & check availability." },
-    { t: "Logo + design preferences", d: "Your mock + color/font direction." },
-    { t: "Brand guard-rail doc", d: "Products, benefits, USP, ethos." },
-    { t: "Product data", d: "Photos, pricing, descriptions, categories." },
+    { t: "Logo + design preferences", d: "Your mark + colour/font direction." },
+    { t: "Brand guard-rail doc", d: "Products/services, benefits, USP, ethos." },
+    { t: "Content & assets", d: "Photos, copy, pricing, anything that goes on the site." },
     { t: "Lead destination", d: "Pick where leads & orders go (see Lead Flow)." },
   ],
 };
