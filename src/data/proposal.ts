@@ -64,7 +64,9 @@ export const pricing = {
     { label: "Forms, Integrations & SEO", desc: "Forms wired + on-page SEO basics.", amount: "$200" },
     { label: "Client Dashboard", desc: "Revisions + analytics portal.", amount: "$200" },
   ],
-  total: { standard: "$3,000", special: "$1,000", specialLabel: "Friends & family rate", note: "+ applicable tax" },
+  // Reference-based pricing (modelled on past builds, e.g. 180AgPros). `special` is
+  // an OPTIONAL per-client rate (off by default) — not a standard part of the template.
+  total: { standard: "$3,000", note: "+ applicable tax" } as { standard: string; special?: string; specialLabel?: string; note: string },
   monthly: [
     { label: "Shopify Basic — e-commerce platform", desc: "Store, checkout, product CMS & sales tracking. Paid to Shopify.", amount: "$39/mo" },
     { label: "SoTech — hosting, care & support", desc: "Managed hosting, maintenance & support. Paid to SoTech.", amount: "$15/mo" },
