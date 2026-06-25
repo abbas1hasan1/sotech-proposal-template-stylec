@@ -70,13 +70,16 @@ export const overview = {
 };
 
 export const competitors = {
-  // 🔒 framing standard; 🔬 the competitors come from /competitive-brief deep-capture
+  // 🔒 framing standard; 🔬 the competitors come from /competitive-brief deep-capture.
+  // `shot` = a real homepage screenshot the build copies into `public/competitors/` (from
+  // /competitive-brief's `.screenshots/competitors/`). Set the path (e.g. "/competitors/competitor-1.png");
+  // leave "" only if no capture exists (a labelled placeholder shows instead — never ship that on a real proposal).
   intro:
     "The benchmark. A few established players, measured side by side: how each is built, what they do well, and where {{Client Name}} wins. This is the bar to clear.",
   items: [
-    { name: "{{Competitor 1}}", url: "{{competitor-1-url}}", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
-    { name: "{{Competitor 2}}", url: "{{competitor-2-url}}", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
-    { name: "{{Competitor 3}}", url: "{{competitor-3-url}}", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
+    { name: "{{Competitor 1}}", url: "{{competitor-1-url}}", shot: "", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
+    { name: "{{Competitor 2}}", url: "{{competitor-2-url}}", shot: "", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
+    { name: "{{Competitor 3}}", url: "{{competitor-3-url}}", shot: "", pages: "{{#}}", pageTypes: "{{page types}}", notable: "{{notable features}}", lookFeel: "{{look & feel}}", whereYouWin: "{{where the client wins vs this competitor}}" },
   ],
 };
 
@@ -199,19 +202,22 @@ export const timeline = {
 
 export const pricing = {
   intro: "A clear, itemized breakdown of the investment — one-time build plus monthly.",
-  // 🔬 line items + amounts from 04-pricing.md (the approved client-facing numbers)
+  // 🔬 line items + amounts from 04-pricing.md (the approved client-facing numbers).
+  // ⚠️ `amount` is rendered VERBATIM (the template adds no "$"). Write the FULL display string
+  // INCLUDING the "$" and any suffix — e.g. "$2,500", "$50/mo". Replace the whole {{token}};
+  // never leave a stray "$" next to it (that produced "$$2,500" — SOT-1639).
   oneTime: [
-    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{$0}}" },
-    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{$0}}" },
-    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{$0}}" },
-    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{$0}}" },
+    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{amount e.g. $2,500}}" },
+    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{amount}}" },
+    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{amount}}" },
+    { label: "{{Line item}}", desc: "{{what it covers}}", amount: "{{amount}}" },
   ],
   // `special` is an OPTIONAL per-client rate (off by default — no standard discount)
-  total: { standard: "{{$0,000}}", note: "+ applicable tax" } as { standard: string; special?: string; specialLabel?: string; note: string },
+  total: { standard: "{{total e.g. $2,500}}", note: "+ applicable tax" } as { standard: string; special?: string; specialLabel?: string; note: string },
   monthly: [
-    { label: "{{Platform}} — platform", desc: "{{what it covers, who it's paid to}}", amount: "{{$0/mo}}" },
-    { label: "SoTech — hosting, care & support", desc: "Managed hosting, maintenance & support. Paid to SoTech.", amount: "{{$0/mo}}" },
-    { label: "Unlimited revisions (optional)", desc: "Edits to existing pages via your dashboard, one at a time. Or {{$0 per revision}}.", amount: "{{$0/mo}}" },
+    { label: "{{Platform}} — platform", desc: "{{what it covers, who it's paid to}}", amount: "{{amount/mo e.g. $50/mo}}" },
+    { label: "SoTech — hosting, care & support", desc: "Managed hosting, maintenance & support. Paid to SoTech.", amount: "{{amount/mo}}" },
+    { label: "Unlimited revisions (optional)", desc: "Edits to existing pages via your dashboard, one at a time. Or {{per-revision price e.g. $75}}.", amount: "{{amount/mo}}" },
   ],
   // 🔒 revision definition is standard
   note: "Revisions = edits to existing pages; a new page or feature is quoted separately.",

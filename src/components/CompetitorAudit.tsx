@@ -16,7 +16,14 @@ export function CompetitorAudit() {
               <span> pages</span>
             </div>
           </div>
-          <div className="cshot">homepage</div>
+          <div className="cshot">
+            {c.shot ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={c.shot} alt={`${c.name} homepage`} />
+            ) : (
+              "homepage"
+            )}
+          </div>
           <div className="cbody">
             <div className="crow">
               <span className="ck">Page types</span>

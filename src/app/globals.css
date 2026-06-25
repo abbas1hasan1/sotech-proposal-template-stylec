@@ -70,7 +70,8 @@ body{background:var(--bg);color:var(--txt);font-family:var(--font-body);font-siz
 .comp .cnum{text-align:right;flex:0 0 auto}
 .comp .cnum b{font-size:1.4rem;font-weight:900;line-height:1}
 .comp .cnum span{font-size:.55rem;text-transform:uppercase;color:#9a98a8;letter-spacing:.05em}
-.cshot{aspect-ratio:940/360;background:linear-gradient(135deg,#eceaf2,#e3def2);display:grid;place-items:center;color:#9a98a8;font-size:.62rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.12em}
+.cshot{aspect-ratio:940/360;background:linear-gradient(135deg,#eceaf2,#e3def2);display:grid;place-items:center;color:#9a98a8;font-size:.62rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.12em;overflow:hidden}
+.cshot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
 .cbody{padding:1rem 1.1rem 1.1rem}
 .crow{padding:.5rem 0;border-top:1px solid #f0eef4}
 .crow:first-child{border-top:0;padding-top:0}
@@ -200,6 +201,19 @@ body{background:var(--bg);color:var(--txt);font-family:var(--font-body);font-siz
 .chk .bx{flex:0 0 18px;width:18px;height:18px;border-radius:5px;border:2px solid var(--lav);margin-top:.1rem}
 .chk b{display:block;font-size:.85rem;color:#fff}
 .chk span{font-size:.74rem;color:var(--muted)}
+
+/* ── Desktop (≥900px) — modules expand into the width, not a skinny mobile column ── */
+@media(min-width:900px){
+  .wrap{max-width:1040px;padding:1.8rem 1.6rem 5rem}
+  .blk-head{padding:1.7rem 2rem}
+  .tray{padding:1.5rem 1.9rem 1.9rem;margin:0 .6rem .6rem}
+  .sintro,.comp-intro{font-size:1rem}
+  /* let the multi-item grids use the extra width */
+  .pgwrites{grid-template-columns:repeat(3,1fr)}
+  .ess{grid-template-columns:repeat(4,1fr)}
+  .intg{grid-template-columns:repeat(3,1fr)}
+  .ostat .o b{font-size:1.9rem}
+}
 
 @media(max-width:560px){
   .blk-title{font-size:clamp(1.1rem,5.2vw,1.5rem)}

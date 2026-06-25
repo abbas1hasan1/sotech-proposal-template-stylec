@@ -34,6 +34,27 @@ vars (`--font-head`/`--font-body`/`--font-mono`). If the blueprint says "Playfai
 DM Sans body", set `fonts: { head: "Playfair Display", body: "DM Sans", mono: "Space Mono" }` — do
 not leave the Archivo default and call it themed. (This was SOT-1630.)
 
+## Competitor screenshots are REAL images (not placeholders)
+
+Each `competitors.items[]` has a `shot` field. `/competitive-brief` captures the top-3 competitor
+homepages to `proposals/{slug}/.screenshots/competitors/` — **copy those into the template's
+`public/competitors/` and set `shot: "/competitors/<file>.png"`** for each. A filled `shot` renders a
+real `<img>` in the card; an empty `shot` falls back to a grey "homepage" placeholder — **never ship
+that on a real proposal** (it means no screenshot was wired). Capture homepages at desktop width.
+
+## Pricing amounts include the `$` — write the whole value, no doubling
+
+`pricing` amounts render **verbatim** (the template adds no `$`). Replace each `{{amount …}}` /
+`{{total …}}` / `{{amount/mo …}}` token with the **full display string including `$` and any
+suffix** — `$2,500`, `$50/mo`, `$75/mo`. Replace the whole token; do **not** leave a stray `$` beside
+it (that produced `$$2,500` — SOT-1639).
+
+## Desktop is first-class (not just the cover)
+
+Modules expand into a ~1040px column on desktop (≥900px) and the internal grids spread — this is in
+`globals.css`, not per-client. Don't fight it; theming stays data-only. When you QA, check **desktop
+(1440) AND mobile (375)** for every module, not just the cover.
+
 ## Section names & order are LOCKED
 
 The `sections[]` (built from `RAW_SECTIONS`) `title` + `sub` are the **canonical module names** —
@@ -97,5 +118,10 @@ These four shipped broken on the Green Mark proposal (SOT-1629/1630/1631/1632). 
 4. **One semantic `<h1>`.** Exactly one `<h1>` exists (it's `sr-only` in the logo-led cover) and
    names the client.
 
-Plus the standard checks: responsive at 375 / 768 / 1440, no console errors, all section content is
-the client's (no leftover SoTech-default copy in the variable slots).
+5. **Competitor screenshots are real.** Each competitor card shows an actual homepage image, not
+   the grey "homepage" placeholder. (Means `shot` paths were wired + images live in `public/`.)
+6. **Pricing has no `$$`.** Grep the rendered page — zero `$$`. Amounts read `$2,500`, `$50/mo`, etc.
+
+Plus the standard checks at **desktop 1440 AND mobile 375** (every module, not just the cover): no
+horizontal overflow, no console errors, all section content is the client's (no leftover
+SoTech-default copy in the variable slots).
