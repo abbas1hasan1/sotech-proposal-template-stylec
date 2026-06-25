@@ -3,6 +3,8 @@ import { meta } from "@/data/proposal";
 export function Cover() {
   return (
     <header className="hero">
+      {/* the page's single semantic H1 — visually the cover is logo-led, so the H1 is sr-only */}
+      <h1 className="sr-only">{meta.heading}</h1>
       <div className="hero-top">
         <span className="hero-pill">{meta.preparedFor}</span>
       </div>

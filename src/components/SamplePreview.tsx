@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { samplePreview as s } from "@/data/proposal";
+import { samplePreview as s, brand } from "@/data/proposal";
 
 export function SamplePreview() {
   const [active, setActive] = useState(s.pages[0].id);
@@ -11,7 +11,7 @@ export function SamplePreview() {
       <div className="demo">
         <div className="dbar">
           <span className="ddot" /><span className="ddot" /><span className="ddot" />
-          <span className="durl">yourbrand.com{page.id === "home" ? "" : "/" + page.id}</span>
+          <span className="durl">{brand.domain}{page.id === "home" ? "" : "/" + page.id}</span>
         </div>
         <div className="dnav">
           {s.pages.map((p) => (

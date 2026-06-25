@@ -16,10 +16,25 @@ export const meta = {
   title: "{{Client Name}} — Proposal · SoTech",
   description: "A custom website proposal, prepared by SoTech.",
   preparedFor: "Prepared for {{Client Name}}",
+  // 🔬 the page's single semantic <h1> (a11y / SEO / social) — name the client + deliverable
+  heading: "{{Client Name}} — Website Proposal",
   cta: "View the proposal",
 };
 
-/* 🔬 per-client theme — overridden by the build; this is the SoTech default palette */
+/* 🔬 per-client brand — the build fills these from 05-proposal.md.
+   `name` drives the Site Map nav logo + the Sample/Domain mock previews;
+   `domain` drives every mock URL + the Domain & Hosting essentials.
+   Filling these two removes ALL generic "Brand" / "yourbrand.com" placeholders. */
+export const brand = {
+  name: "{{Client Name}}",
+  domain: "{{client-domain}}",
+};
+
+/* 🔬 per-client theme — overridden by the build; this is the SoTech default palette.
+   `fonts` are data-driven too: the build sets head/body/mono from the blueprint's
+   typography (e.g. head "Playfair Display", body "DM Sans"). Use Google variable
+   fonts for head/body (loaded with a wght@400..900 range); mono needs 400 + 700.
+   Defaults keep the Style-C look (Archivo + Space Mono). */
 export const theme = {
   bg: "#0d0d0f",
   peri: "#8E9BE8",
@@ -27,6 +42,11 @@ export const theme = {
   violet: "#9B7BD4",
   pink: "#DA8BC4",
   sky: "#5B9BD5",
+  fonts: {
+    head: "Archivo",
+    body: "Archivo",
+    mono: "Space Mono",
+  },
 };
 
 export const overview = {
@@ -84,6 +104,9 @@ export const designDirection = {
 export const siteMap = {
   intro: "Every page your site will have, how they connect, and what lives on each one.",
   nav: ["Home", "{{Nav}}", "{{Nav}}", "{{Nav}}", "{{Nav}}"],
+  // 🔬 the nav's right-side CTA pill in the mock. "Contact" suits most sites;
+  // set to "Cart" only for e-commerce. The brand name is the nav logo (brand.name).
+  navCta: "Contact",
   pages: [
     { name: "Home", slug: "/", sections: "{{the sections on the home page}}" },
     { name: "{{Page}}", slug: "/{{slug}}", sections: "{{the sections on this page}}" },
@@ -123,11 +146,11 @@ export const samplePreview = {
 
 export const domainHosting = {
   intro: "The essentials that keep your site live, findable, and looked-after over time.",
-  // 🔒 the four essentials definitions are standard
+  // 🔒 the four essentials definitions are standard; 🔬 the domain example comes from brand.domain
   essentials: [
-    { k: "Domain", v: "Your unique web address (yourbrand.com), how people find you online." },
+    { k: "Domain", v: `Your unique web address (${brand.domain}), how people find you online.` },
     { k: "Hosting", v: "The server your site's files live on, served fast, secure & always on." },
-    { k: "Email", v: "Professional email on your domain (you@yourbrand.com), instant credibility." },
+    { k: "Email", v: `Professional email on your domain (you@${brand.domain}), instant credibility.` },
     { k: "SEO", v: "Helps you rank higher on Google, driving organic traffic to your site." },
   ],
   // 🔬 platform + numbers come from the matched pricing/model ingredient

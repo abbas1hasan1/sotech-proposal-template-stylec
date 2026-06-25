@@ -1,4 +1,4 @@
-import { domainHosting as d } from "@/data/proposal";
+import { domainHosting as d, brand } from "@/data/proposal";
 
 const ink = (c: string) => (c === "pink" || c === "violet" ? "#fff" : "#16161b");
 
@@ -7,9 +7,9 @@ export function DomainHosting() {
     <>
       <p className="sintro">{d.intro}</p>
       <div className="device">
-        <div className="dvbar"><span className="ddot" /><span className="ddot" /><span className="ddot" /><span className="durl">yourbrand.com</span></div>
+        <div className="dvbar"><span className="ddot" /><span className="ddot" /><span className="ddot" /><span className="durl">{brand.domain}</span></div>
         <div className="dvbody">
-          <div className="dvhero">Your Brand</div>
+          <div className="dvhero">{brand.name}</div>
           <div className="dvrow"><span /><span /><span /></div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { siteMap as s } from "@/data/proposal";
+import { siteMap as s, brand } from "@/data/proposal";
 
 export function SiteMap() {
   return (
@@ -6,9 +6,9 @@ export function SiteMap() {
       <p className="sintro">{s.intro}</p>
       <div className="rule">Navigation</div>
       <div className="navbar">
-        <span className="nlogo">Brand</span>
+        <span className="nlogo">{brand.name}</span>
         {s.nav.map((n, i) => <span key={i} className="nitem">{n}</span>)}
-        <span className="ncart">Cart</span>
+        {s.navCta ? <span className="ncart">{s.navCta}</span> : null}
       </div>
       <div className="rule">Pages</div>
       <div className="ptree">
