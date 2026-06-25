@@ -229,22 +229,73 @@ export const nextSteps = {
   ],
 };
 
+/* 🔬 SERVICE MODULES (non-website engagements: SEO, Paid Ads, CRM, Tracking, Integrations, AI).
+   Generic + data-driven: add a service by adding an entry here + a `sections[]` row with
+   kind "service" and the matching `serviceId` — NO new component needed. 🔒 framing stays
+   standard (source copy in skills/proposal-build/modules.md); 🔬 specifics fill from 05-proposal.md.
+   The website default (below) uses NO services; a `full` proposal adds them. `seo` is the
+   shape example — copy it per service (e.g. "paidAds", "crm", "tracking", "integrations", "ai"). */
+export const services: Record<
+  string,
+  {
+    intro: string;
+    whatItDoes: { tag: string; title: string; body: string }[];
+    deliverables: string[];
+    note?: string;
+  }
+> = {
+  seo: {
+    intro: "{{One line on the SEO goal for {{Client Name}} — the ranking/traffic outcome this drives}}",
+    whatItDoes: [
+      { tag: "On-page", title: "{{On-page focus}}", body: "{{titles, content & structure we optimise}}" },
+      { tag: "Local", title: "{{Local / GBP focus}}", body: "{{Google Business Profile, citations, local pack}}" },
+      { tag: "Technical", title: "{{Technical focus}}", body: "{{speed, indexing, schema, crawlability}}" },
+    ],
+    deliverables: ["{{Deliverable 1}}", "{{Deliverable 2}}", "{{Deliverable 3}}"],
+    note: "Reported monthly; SEO compounds over time.",
+  },
+};
+
 export type Kind =
   | "overview" | "competitors" | "design" | "sitemap" | "functionalities"
-  | "sample" | "domain" | "leadflow" | "timeline" | "pricing" | "nextsteps";
+  | "sample" | "domain" | "leadflow" | "timeline" | "pricing" | "nextsteps"
+  | "service";
 
-export type Section = { id: string; index: string; title: string; sub: string; color: string; kind: Kind };
+export type Section = {
+  id: string;
+  index: string;
+  title: string;
+  sub: string;
+  color: string;
+  kind: Kind;
+  serviceId?: string; // only for kind "service" — keys into `services`
+};
 
-export const sections: Section[] = [
-  { id: "overview", index: "01", title: "Overview", sub: "What we're building", color: "peri", kind: "overview" },
-  { id: "competitors", index: "02", title: "Competitor Audit", sub: "What the market looks like", color: "lav", kind: "competitors" },
-  { id: "design", index: "03", title: "Design Direction", sub: "The look & feel", color: "violet", kind: "design" },
-  { id: "sitemap", index: "04", title: "Site Map", sub: "Pages & structure", color: "pink", kind: "sitemap" },
-  { id: "functionalities", index: "05", title: "Functionalities", sub: "What it can do", color: "white", kind: "functionalities" },
-  { id: "sample", index: "06", title: "Sample Preview", sub: "A first look at the site", color: "peri", kind: "sample" },
-  { id: "domain", index: "07", title: "Domain & Hosting", sub: "Where it lives", color: "lav", kind: "domain" },
-  { id: "leadflow", index: "08", title: "Lead Flow", sub: "How customers come in, and where leads go", color: "violet", kind: "leadflow" },
-  { id: "timeline", index: "09", title: "Timeline", sub: "From kickoff to launch", color: "pink", kind: "timeline" },
-  { id: "pricing", index: "10", title: "Pricing", sub: "The investment", color: "white", kind: "pricing" },
-  { id: "nextsteps", index: "11", title: "Next Steps", sub: "What we need from you", color: "peri", kind: "nextsteps" },
+/* 🔒 LOCKED Style-1 colour rhythm — assigned BY POSITION (index), never per section.
+   Heavy shades (violet, sky) are always flanked by lights → never two heavies adjacent.
+   Slots are themed per client via `theme`; keep lighter brand shades on peri/lav/pink and
+   deeper shades on violet/sky (white stays white) so the rhythm survives per-client theming. */
+const COLOR_SEQUENCE = ["peri", "violet", "lav", "sky", "pink", "white"] as const;
+
+/* 🔒 The TITLES + SUBS below are LOCKED canonical module names — never rename, reorder, or
+   tokenize them per client; only the per-section content exports vary. Website default = these 11.
+   A `full` proposal reorders this list and inserts `kind:"service"` rows (color auto-assigns). */
+const RAW_SECTIONS: Omit<Section, "color">[] = [
+  { id: "overview", index: "01", title: "Overview", sub: "What we're building", kind: "overview" },
+  { id: "competitors", index: "02", title: "Competitor Audit", sub: "What the market looks like", kind: "competitors" },
+  { id: "design", index: "03", title: "Design Direction", sub: "The look & feel", kind: "design" },
+  { id: "sitemap", index: "04", title: "Site Map", sub: "Pages & structure", kind: "sitemap" },
+  { id: "functionalities", index: "05", title: "Functionalities", sub: "What it can do", kind: "functionalities" },
+  { id: "sample", index: "06", title: "Sample Preview", sub: "A first look at the site", kind: "sample" },
+  { id: "domain", index: "07", title: "Domain & Hosting", sub: "Where it lives", kind: "domain" },
+  { id: "leadflow", index: "08", title: "Lead Flow", sub: "How customers come in, and where leads go", kind: "leadflow" },
+  { id: "timeline", index: "09", title: "Timeline", sub: "From kickoff to launch", kind: "timeline" },
+  { id: "pricing", index: "10", title: "Pricing", sub: "The investment", kind: "pricing" },
+  { id: "nextsteps", index: "11", title: "Next Steps", sub: "What we need from you", kind: "nextsteps" },
 ];
+
+// Colour derived by position from COLOR_SEQUENCE — do NOT hand-assign colours per section.
+export const sections: Section[] = RAW_SECTIONS.map((s, i) => ({
+  ...s,
+  color: COLOR_SEQUENCE[i % COLOR_SEQUENCE.length],
+}));

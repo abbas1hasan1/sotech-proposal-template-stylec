@@ -34,6 +34,47 @@ vars (`--font-head`/`--font-body`/`--font-mono`). If the blueprint says "Playfai
 DM Sans body", set `fonts: { head: "Playfair Display", body: "DM Sans", mono: "Space Mono" }` — do
 not leave the Archivo default and call it themed. (This was SOT-1630.)
 
+## Section names & order are LOCKED
+
+The `sections[]` (built from `RAW_SECTIONS`) `title` + `sub` are the **canonical module names** —
+"Overview", "Competitor Audit", … "Pricing", "Next Steps". **Never rename, reorder, or tokenize
+them per client.** Only the per-section content exports vary. (Pricing is always "Pricing"; Next
+Steps is always "Next Steps" — no custom headings.) A website proposal is exactly these 11.
+
+## Colours rotate BY POSITION — don't hand-assign them
+
+Section colours are **not** set per section. They're derived by index from one locked sequence:
+
+```
+COLOR_SEQUENCE = ["peri", "violet", "lav", "sky", "pink", "white"]   // repeats
+```
+
+Heavy shades (`violet`, `sky`) are always flanked by lights → **no two heavy shades adjacent**, by
+construction, no matter how many modules a proposal has. Do **not** add a `color` to a section row —
+it's computed.
+
+**Theming guardrail:** the rotation assigns *slots* (`peri/lav/violet/pink/sky`) that your client
+`theme` fills with brand hexes. Put the client's **lighter** brand shades on `peri/lav/pink` and the
+**deeper** ones on `violet/sky` (white stays white). Otherwise a palette could make two adjacent
+slots both dark and break the rhythm.
+
+## Adding a module
+
+**A new SERVICE module (SEO, Paid Ads, CRM, Tracking, Integrations, AI) — DATA-ONLY:**
+1. Add an entry to the `services` record in `src/data/proposal.ts` (copy the `seo` shape:
+   `intro` + `whatItDoes[]` + `deliverables[]` + optional `note`). Keep the 🔒 standard framing
+   from `skills/proposal-build/modules.md`; fill 🔬 tokens from `05-proposal.md`.
+2. Add a `sections[]` row: `{ id, index, title: "<Canonical Name>", sub: "…", kind: "service",
+   serviceId: "<the services key>" }`. Colour auto-assigns by position. No new component.
+
+Canonical service ids → display names: `seo` → "SEO", `paidAds` → "Paid Advertising",
+`crm` → "CRM & Automations", `tracking` → "Tracking & Analytics", `integrations` → "Integrations",
+`ai` → "AI for Marketing".
+
+**A brand-new bespoke module (rare — only when the generic service shape can't express it):**
+`Kind` union → new data export → new `src/components/<Name>.tsx` → add to the `bodies` map in
+`src/app/page.tsx` → `sections[]` row. (The fixed website modules each work this way.)
+
 ## Deploy
 
 `vercel --prod --project sotech-{slug}-proposal`, then post the **production alias**

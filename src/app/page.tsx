@@ -12,10 +12,13 @@ import { LeadFlow } from "@/components/LeadFlow";
 import { Timeline } from "@/components/Timeline";
 import { Pricing } from "@/components/Pricing";
 import { NextSteps } from "@/components/NextSteps";
+import { Service } from "@/components/Service";
 import { Footer } from "@/components/Footer";
 import { sections, type Kind } from "@/data/proposal";
 
-const bodies: Record<Kind, ReactNode> = {
+// Fixed-kind bodies. The "service" kind is rendered separately (by serviceId), since a
+// proposal can have several service sections — see the render below.
+const bodies: Record<Exclude<Kind, "service">, ReactNode> = {
   overview: <Overview />,
   competitors: <CompetitorAudit />,
   design: <DesignDirection />,
@@ -36,7 +39,7 @@ export default function Page() {
       <div className="wrap">
         {sections.map((s) => (
           <Blk key={s.id} id={s.id} index={s.index} title={s.title} sub={s.sub} color={s.color}>
-            {bodies[s.kind]}
+            {s.kind === "service" ? <Service id={s.serviceId ?? ""} /> : bodies[s.kind]}
           </Blk>
         ))}
         <Footer />
